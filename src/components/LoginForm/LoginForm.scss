@@ -1,0 +1,53 @@
+@import '../../styles/variables';
+
+.form {
+    border: none;
+    box-shadow: 2px 2px 2px 2px $lightGray;
+    padding: 2em;
+    background: $gray;
+    color: $white;
+  
+    h3 {
+      margin-top: 0;
+      text-align: center;
+      font-size: 2em;
+    }
+  
+    input {
+      outline: none;
+      font-size: 1em;
+  
+      &[type='text'], &[type='password'] {
+        padding: 0 1em;
+        border-radius: $borderRadius;
+        border: 3px solid $white;
+        transition: border 0.3s;
+        height: 2em;
+        margin-bottom: 1em;
+  
+        &:focus {
+          border: 3px solid rgb(67, 67, 148);
+        }
+      }
+  
+      &[type='submit'] {
+        border-radius: $borderRadius;
+        background-color: $blue;
+        transition: background-color 0.3s;
+        border: none;
+        color: white;
+        font-weight: 600;
+        padding: 0.5em 1em;
+        cursor: pointer;
+        width: 100%;
+        &:hover {
+          background-color: $darkBlue;
+        }
+      }
+    }
+  
+    label {
+      font-weight: 600;
+      margin-bottom: 0.5em;
+    }
+  }
