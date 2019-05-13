@@ -6,6 +6,10 @@
     padding: 2em;
     background: $gray;
     color: $white;
+
+    .input--error {
+      border: 3px solid $error !important;
+    }
   
     h3 {
       margin-top: 0;
@@ -50,4 +54,12 @@
       font-weight: 600;
       margin-bottom: 0.5em;
     }
+
+    .error {
+      color: $error;
+      margin: 0 1em 1em 1em;
+      max-width: 200px;
+    }
+
+
   }

@@ -3,7 +3,7 @@ import find from 'lodash/find'
 
 class FormField extends React.PureComponent {
   state = {
-    pristine: true,
+    touched: false,
     error: null
   }
 
@@ -12,27 +12,30 @@ class FormField extends React.PureComponent {
     const error = find(this.props.validators, (validator) => !validator.validator(value))
     if (error) {
       this.setState({ error: error.message })
+    } else {
+      this.setState({ error: null })
     }
   }
 
   render() {
     const { children, ...rest } = this.props
-    const { error, pristine } = this.state
+    const { error, touched } = this.state
     return <div>
       {React.Children.map(children, (child) => {
         return React.cloneElement(child, {
           ...child.props,
+          className: `${child.props.className ? child.props.className : ''} ${error && touched && 'input--error'}`,
           onBlur: (event) => {
-            this.setState({ pristine: false })
-            child.onBlur && child.onBlur()
+            this.setState({ touched: true })
+            child.props.onBlur && child.props.onBlur(event)
           },
           onChange: (event) => {
             this.validateField(event)
-            child.onChange && child.onChange(event)
+            child.props.onChange && child.props.onChange(event)
           }
         })
       })}
-      {error && !pristine && <div className='field--error'>
+      {error && touched && <div className='error'>
         {error}
       </div>}
     </div>
